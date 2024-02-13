@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Business Growth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="../../../css/site.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .image-uploader-container {
+            max-width: 650px;
+            width: 100%;
+            padding: 30px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+        }
+
+        .image-uploader-container > .drag-area {
+            height: 400px;
+            border: 3px dashed #e0eafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 10px auto;
+        }
+
+        .image-uploader-container > .title {
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: #0C0C0E;
+        }
+
+        .drag-area .icon {
+            font-size: 50px;
+            color: #1683ff;
+        }
+
+        .drag-area .header {
+            font-size: 20px;
+            font-weight: 500;
+            color: #34495e;
+        }
+
+        .drag-area .support {
+            font-size: 12px;
+            color: #808080;
+            margin: 10px 0 15px 0;
+        }
+
+        .drag-area .button {
+            font-size: 20px;
+            font-weight: 500;
+            color: #1683ff;
+            cursor: pointer;
+        }
+
+        .drag-area.active {
+            border: 2px solid #1683ff;
+        }
+
+        .drag-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="image-uploader-container">
+    <h3 class="title">Upload your file</h3>
+    <div class="drag-area">
+        <div class="icon">
+            <i class="fas fa-images"></i>
+        </div>
+
+        <span class="header">Drag & Drop</span>
+        <span class="header">or <span class="button">browse</span></span>
+        <input type="file" hidden="hidden"/>
+        <span class="support">Supports: JPEG, JPG, PNG</span>
+    </div>
+</div>
+
+<script>
+    const dragArea = document.querySelector('.drag-area');
+    const dragText = document.querySelector('.header');
+
+    let button = document.querySelector('.button');
+    let input = document.querySelector('input');
+
+    let file;
+
+    button.onclick = () => {
+        input.click();
+    };
+
+    //when browse
+    input.addEventListener('change', () => {
+        file = input.files[0];
+        dragArea.classList.add('active');
+        displayFile();
+    });
+
+    // when files is insede the drag area
+    dragArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dragText.textContent = 'Release to Upload';
+        dragArea.classList.add('active');
+        // console.log('File is inside the drag area');
+    });
+
+    // when file leaves the drag area
+    dragArea.addEventListener('dragleave', () => {
+        dragText.textContent = 'Drag & Drop';
+        dragArea.classList.remove('active');
+        // console.log('File left the drag area');
+    });
+
+    // when the file is dropped in the drag area
+    dragArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        file = e.dataTransfer.files[0];
+        displayFile();
+    });
+
+    function displayFile() {
+        let fileType = file.type;
+        let validExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
+
+        if (validExtensions.includes(fileType)) {
+            let fileReader = new FileReader();
+
+            fileReader.onload = () => {
+                let fileURL = fileReader.result;
+
+                let imgTag = `<img src="${fileURL}" alt="">`
+                dragArea.innerHTML = imgTag;
+            };
+            fileReader.readAsDataURL(file);
+        } else {
+            alert('This file is not and Image');
+            dragArea.classList.remove('active');
+        }
+
+        // console.log('The file is dropped in drag area');
+    }
+</script>
+
+</body>
+
+</html>
