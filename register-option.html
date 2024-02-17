@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="register-option.css">
+</head>
+<body>
+<div id="register-option-container">
+    <header class="section-header">
+        <h2>Join us as client or freelancer</h2>
+    </header>
+    <section class="section-register-option">
+        <div class="option-company radio-btn">
+            <input type="radio" name="company"/>
+            <div class="option-svg-icon">
+                <img src="company.svg" alt="">
+            </div>
+            <h4 class="option-title">I'm a client, hiring for a project</h4>
+        </div>
+        <div class="option-client radio-btn">
+            <input type="radio" name="freelancer"/>
+            <div class="option-svg-icon">
+                <img src="freelancer.svg" alt="">
+            </div>
+            <h4 class="option-title">I'm a freelancer, looking for work</h4>
+        </div>
+    </section>
+    <div class="section-footer">
+        <a class="create-btn" href="#">Create Account</a>
+        <p>Already have an account? <a class="cta-link" href="#">Log in</a></p>
+    </div>
+</div>
+
+
+<script>
+    let registerOptionContainer = document.getElementById('register-option-container');
+    let radioBtns = registerOptionContainer.querySelectorAll("input[type=radio]")
+
+    radioBtns[0].addEventListener('click', () => {
+        radioBtns[1].checked = false;
+    });
+    radioBtns[1].addEventListener('click', () => {
+        radioBtns[0].checked = false;
+    });
+
+    let createBtn = registerOptionContainer.querySelector(' .section-footer > .create-btn');
+
+    createBtn.addEventListener('click', () => {
+
+    })
+</script>
+</body>
+</html>
