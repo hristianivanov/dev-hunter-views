@@ -34,22 +34,81 @@
 </div>
 
 
-<script>
-    let registerOptionContainer = document.getElementById('register-option-container');
-    let radioBtns = registerOptionContainer.querySelectorAll("input[type=radio]")
+<style>
+    :root {
+      --btn-border-active: #108a00;
+      --btn-bg-active: #f7faf7;
 
-    radioBtns[0].addEventListener('click', () => {
-        radioBtns[1].checked = false;
+      --create-btn-bg: #108a00;
+      --create-btn-text: #fff;
+      --create-btn-bg-hover:#14a800;
+    }
+
+    .radio-btn {
+      cursor: pointer;
+      transition: 0.1s all ease-in-out;
+    }
+
+    .radio-btn.active,
+    .radio-btn:hover {
+      border-color: var(--btn-border-active);
+      background: var(--btn-bg-active);
+    }
+
+    .radio-btn:active {
+      transform: scale(0.96);
+    }
+
+    .radio-btn input[type="radio"] {
+      accent-color: var(--btn-border-active);
+    }
+
+    .create-btn.active {
+      cursor: pointer;
+      color: var(--create-btn-text);
+      background: var(--create-btn-bg);
+    }
+
+    .create-btn.active:hover {
+      background: var(--create-btn-bg-hover);
+    }
+  </style>
+
+  <script>
+    let registerOptionContainer = document.getElementById(
+      "register-option-container"
+    );
+    let radioBtns =
+      registerOptionContainer.querySelectorAll("input[type=radio]");
+
+    radioBtns[0].addEventListener("click", () => {
+      radioBtns[1].checked = false;
     });
-    radioBtns[1].addEventListener('click', () => {
-        radioBtns[0].checked = false;
+
+    radioBtns[1].addEventListener("click", () => {
+      radioBtns[0].checked = false;
     });
 
-    let createBtn = registerOptionContainer.querySelector(' .section-footer > .create-btn');
+    const radioBtnsContainers = document.querySelectorAll(
+      "#register-option-container .radio-btn"
+    );
 
-    createBtn.addEventListener('click', () => {
+    let createBtn = registerOptionContainer.querySelector(
+      " .section-footer > .create-btn"
+    );
 
-    })
-</script>
+    createBtn.addEventListener("click", () => {});
+
+    radioBtnsContainers.forEach((container) =>
+      container.addEventListener("click", () => {
+        createBtn.classList.add("active");
+        radioBtnsContainers.forEach((ctn) => ctn.classList.remove("active"));
+        container.classList.add("active");
+        radioBtns.forEach((btn) => (btn.checked = false));
+        const radioBtn = container.querySelector("input[type=radio]");
+        radioBtn.checked = true;
+      })
+    );
+  </script>
 </body>
 </html>
