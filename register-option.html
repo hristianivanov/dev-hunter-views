@@ -76,7 +76,7 @@
     <script>
       const registerOptionContainer = document.getElementById("register-option-container");
       const radioBtns =registerOptionContainer.querySelectorAll("input[type=radio]");
-      const radioBtnsContainers = document.querySelectorAll("#register-option-container .radio-btn");
+      const radioBtnsContainers = registerOptionContainer.querySelectorAll(".radio-btn");
       const createBtn = registerOptionContainer.querySelector(".section-footer > .create-btn");
 
       radioBtnsContainers.forEach((container) =>
