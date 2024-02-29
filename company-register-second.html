@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="company-register-second.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+</head>
+<body>
+<div class="rich-text-editor">
+    <div class="options">
+        <button id="bold" class="option-button format">
+            <i class="fa-solid fa-bold"></i>
+        </button>
+        <button id="italic" class="option-button format">
+            <i class="fa-solid fa-italic"></i>
+        </button>
+        <button id="underline" class="option-button format">
+            <i class="fa-solid fa-underline"></i>
+        </button>
+        <button id="strikethrough" class="option-button format">
+            <i class="fa-solid fa-strikethrough"></i>
+        </button>
+        <button id="insertOrderedList" class="option-button">
+            <i class="fa-solid fa-list-ol"></i>
+        </button>
+        <button id="insertUnorderedList" class="option-button">
+            <i class="fa-solid fa-list"></i>
+        </button>
+    </div>
+    <div class="rich-text-area" contenteditable="true"></div>
+</div>
+
+<script>
+    let optionsButtons = document.querySelectorAll(".option-button");
+    let stylingBtns = document.querySelectorAll(".options button:not(:nth-last-child(-n+2))");
+
+    const modifyText = (command, defaultUi, value) => {
+        document.execCommand(command, defaultUi, value);
+    };
+
+    optionsButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            modifyText(button.id, false, null);
+        });
+    });
+
+    stylingBtns.forEach(btn => {
+        btn.addEventListener("click", (event) => {
+            let clickedButton = event.currentTarget;
+
+            clickedButton.classList.toggle("active");
+        });
+    });
+
+    const orderNumberBtn = document.getElementById('insertOrderedList');
+    const orderBulletBtn = document.getElementById('insertUnorderedList');
+
+    orderNumberBtn.addEventListener('click', (e) => {
+        if (e.currentTarget.classList.contains('active')) {
+            e.currentTarget.classList.remove('active');
+        } else {
+            orderBulletBtn.classList.remove('active');
+            e.currentTarget.classList.add('active');
+        }
+    })
+    orderBulletBtn.addEventListener('click', (e) => {
+        if (e.currentTarget.classList.contains('active')) {
+            e.currentTarget.classList.remove('active');
+        } else {
+            orderNumberBtn.classList.remove('active');
+            e.currentTarget.classList.add('active');
+        }
+    })
+</script>
+</body>
+</html>
