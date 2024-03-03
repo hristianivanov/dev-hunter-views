@@ -38,7 +38,7 @@ body {
     gap: 0.8em;
 }
 
-.register-container > :first-child {
+.register-container > .company-register-form > header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,6 +51,7 @@ body {
     gap: 0.6em;
     margin-top: 0.8em;
     margin-bottom: 2.5em;
+    align-items: stretch;
 }
 
 .register-container .profile-icon {
@@ -89,6 +90,7 @@ body {
 
 .submit-register-btn {
     padding: 1em 1.5em;
+    font-family: Satoshi,sans-serif;
     background: rgba(0, 0, 88, 0.10);
     box-shadow: 0 0 0 1px #4056C0 inset;
     border-radius: 2em;

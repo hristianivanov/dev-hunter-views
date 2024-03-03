@@ -60,6 +60,8 @@
     const radioBtns = registerOptionContainer.querySelectorAll("input[type=radio]");
     const radioBtnsContainers = registerOptionContainer.querySelectorAll(".radio-btn");
     const createBtn = registerOptionContainer.querySelector(".section-footer > .create-btn");
+    const baseUrl = "/User";
+
 
     radioBtnsContainers.forEach((container) =>
         container.addEventListener("click", () => {
@@ -69,11 +71,17 @@
             container.classList.add("active");
             container.querySelector("input[type=radio]").checked = true;
 
+            let href = createBtn.getAttribute("href");
+
             if (container.classList.contains("option-company")) {
                 createBtn.textContent = "Join us as a client";
+                href = baseUrl + "/RegisterCompany";
             } else if (container.classList.contains("option-client")) {
                 createBtn.textContent = "Apply as a freelancer";
+                href = baseUrl + "/RegisterUser";
             }
+
+            createBtn.setAttribute("href", href);
         })
     );
 
@@ -83,6 +91,11 @@
         );
         radioBtns.forEach((btn) => (btn.checked = false));
     }
+
+
+    document.querySelectorAll('.site-header :not(:first-child)').forEach(i => i.style.display = 'none');
+    document.querySelector('.site-footer').style.display = 'none';
+
 </script>
 </body>
 </html>
