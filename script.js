@@ -27,6 +27,7 @@ input.addEventListener("keydown", (e) => {
         let tag;
         if (currentFocus > -1) {
             let suggestion = suggestContainer.children[currentFocus];
+
             if (input.value) {
                 tag = suggestion.textContent.replace(/\s+/g, ' ');
             }
@@ -38,6 +39,7 @@ input.addEventListener("keydown", (e) => {
                 tag.split(',').forEach(tag => {
                     tags.push(tag);
                     createTag();
+                    suggestions.filter((data) => !tags.includes(data));
                 });
             }
         }
@@ -57,6 +59,8 @@ input.addEventListener("keydown", (e) => {
             let suggestion = suggestContainer.children[currentFocus];
             suggestion.classList.add("active");
         }
+    } else if (e.key === "Escape") {
+        closeSuggestions();
     } else {
         let userData = e.target.value;
         let emptyArray = [];
@@ -67,10 +71,14 @@ input.addEventListener("keydown", (e) => {
             emptyArray = emptyArray.map((data) => {
                 return (data = '<li class="suggestion">' + data + '</li>');
             });
-            container.classList.add("active");
-            showSuggestions(emptyArray);
+            if (e.key === "Backspace" && input.value.length === 1) {
+                suggestContainer.classList.remove("active");
+            } else {
+                suggestContainer.classList.add("active");
+                showSuggestions(emptyArray);
+            }
         } else {
-            container.classList.remove("active");
+            suggestContainer.classList.remove("active");
         }
     }
 });
@@ -88,9 +96,15 @@ function showSuggestions(list) {
 function createTag() {
     ul.querySelectorAll("li").forEach((li) => li.remove());
     tags.slice().reverse().forEach((tag) => {
-        let liTag = `<li>${tag} <i class="uit uit-multiply" onclick="removeTag(this, '${tag}')"></i></li>`;
+        let liTag = `<li>${tag} <svg class="remove-tag-icon" onclick="removeTag(this, '${tag}')" color="rgb(88, 166, 255)" width="24" height="24" fill="none" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M17.25 6.75L6.75 17.25"/>
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M6.75 6.75L17.25 17.25"/>
+</svg></li>`;
         ul.insertAdjacentHTML("afterbegin", liTag);
     });
+    suggestContainer.classList.remove("active");
 }
 
 function removeTag(element, tag) {
@@ -114,3 +128,22 @@ suggestContainer.addEventListener("click", (e) => {
         input.dispatchEvent(enterKeyEvent);
     }
 });
+
+
+container.addEventListener("click", () => {
+    input.focus();
+})
+
+function closeSuggestions() {
+    suggestContainer.classList.remove("active");
+    input.blur();
+}
+
+document.addEventListener("click", (e) => {
+    const isInputOrSuggester = input.contains(e.target) || suggestContainer.contains(e.target);
+
+    if (!isInputOrSuggester) {
+        closeSuggestions();
+    }
+});
+
