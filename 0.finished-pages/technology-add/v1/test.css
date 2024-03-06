@@ -96,7 +96,7 @@ body {
     }
 }
 
-.content {
+.job-offer-technology-tags {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
