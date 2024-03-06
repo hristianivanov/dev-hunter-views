@@ -31,6 +31,8 @@ body {
 }
 
 .job-offer-technology-tags .job-tags li {
+    display: flex;
+    align-items: center;
     color: #58a6ff;
     margin: 4px 3px;
     font-size: 14px;
