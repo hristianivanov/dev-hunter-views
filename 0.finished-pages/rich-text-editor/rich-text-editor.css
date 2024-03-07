@@ -26,7 +26,7 @@ body {
     padding: 8px;
 }
 
-.options > button {
+.rich-text-editor .options > button {
     position: relative;
     height: 35px;
     width: 35px;
@@ -37,11 +37,11 @@ body {
     color: #020929;
 }
 
-.options > button:nth-last-child(2) {
+.rich-text-editor .options > button:nth-last-child(2) {
     margin-left: 1em;
 }
 
-.options > button:nth-last-child(2)::before {
+.rich-text-editor .options > button:nth-last-child(2)::before {
     content: '';
     display: block;
     width: 2px;
@@ -52,12 +52,12 @@ body {
     top: 0;
 }
 
-.options > button > i {
+.rich-text-editor .options > button > i {
     color: white;
     font-size: 18px;
 }
 
-.rich-text-area {
+.rich-text-editor .rich-text-area {
     outline: none;
     border: 2px solid #272624;
     border-radius: 0.5em;
@@ -69,10 +69,10 @@ body {
     overflow: scroll;
 }
 
-.rich-text-area:focus {
+.rich-text-editor .rich-text-area:focus {
     border-color: orangered;
 }
 
-button.active {
+.rich-text-editor button.active {
     background-color: #292423;
 }

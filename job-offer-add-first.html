@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dropdown.css">
+</head>
+<body>
+<div class="jon-offer-container">
+    <h1 class="heading">Job post</h1>
+    <form class="job-offer-add-form" method="post">
+        <div class="input-field">
+            <input type="email" placeholder="Job title"/>
+        </div>
+
+        <div class="dropdown">
+            <div class="select">
+                <span class="selected">Select job-location</span>
+                <div class="caret"></div>
+            </div>
+            <ul class="menu">
+                <li>In-person, precise location</li>
+                <li>Remote</li>
+                <li>Hybrid remote</li>
+                <li>On the road</li>
+            </ul>
+
+            <div class="input-field" style="display: none">
+                <input type="password" placeholder="Job location address"/>
+            </div>
+        </div>
+
+        <!--    experience level-->
+        <div class="select seniority">
+            <header class="option-title">Seniority</header>
+            <ul class="options radio">
+                <li class="option">Junior</li>
+                <li class="option">1-2 years work experience</li>
+                <li class="option">2-5 years work experience</li>
+                <li class="option">5+ years work experience</li>
+                <li class="option">Team Lead</li>
+            </ul>
+        </div>
+
+        <div class="select work-hours">
+            <header class="option-title">Schedule</header>
+            <ul class="options radio">
+                <li class="option">4 hours shift</li>
+                <li class="option">8 hours shift</li>
+                <li class="option">10 hours shift</li>
+                <li class="option">12 hours shift</li>
+                <li class="option">Monday to Friday</li>
+                <li class="option">Day shift</li>
+                <li class="option">Night shift</li>
+                <li class="option">On call</li>
+                <li class="option">After school</li>
+                <li class="option">Choose your own hours</li>
+                <li class="option">Weekends only</li>
+            </ul>
+        </div>
+
+        <!--PAY-->
+        <!--    maximum week hours 168-->
+        <div class="input-field">
+            <input type="number" placeholder="Working hours"/>
+            <!--        fixed hours-->
+            <!--        range-->
+            <!--        maximum -->
+            <!--        minimum-->
+        </div>
+
+        <div class="input-field">
+            <!--        range-->
+            <!--        starting amount-->
+            <!--        exact amount-->
+
+            <!--        per year day month week hour-->
+            <input type="number" placeholder="Salary">
+        </div>
+
+
+        <!--    JOB DESCRIPTION-->
+        <div class="rich-text-editor">
+            <div class="options">
+                <button id="bold" class="option-button format">
+                    <i class="fa-solid fa-bold"></i>
+                </button>
+                <button id="italic" class="option-button format">
+                    <i class="fa-solid fa-italic"></i>
+                </button>
+                <button id="underline" class="option-button format">
+                    <i class="fa-solid fa-underline"></i>
+                </button>
+                <button id="strikethrough" class="option-button format">
+                    <i class="fa-solid fa-strikethrough"></i>
+                </button>
+                <button id="insertOrderedList" class="option-button">
+                    <i class="fa-solid fa-list-ol"></i>
+                </button>
+                <button id="insertUnorderedList" class="option-button">
+                    <i class="fa-solid fa-list"></i>
+                </button>
+            </div>
+            <div class="rich-text-area" contenteditable="true"></div>
+        </div>
+    </form>
+</div>
+<script src="script.js"></script>
+<script src="dropdown.js"></script>
+<script src="select.js"></script>
+<script src="rich-tech-editor.js"></script>
+<script src="tech-stack.js"></script>
+</body>
+</html>
