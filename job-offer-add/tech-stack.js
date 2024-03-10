@@ -1,10 +1,10 @@
-const ul = document.querySelector(".job-tags"),
-    input = document.querySelector(".search"),
-    container = document.querySelector(".job-offer-technology-tags");
+let techUl = document.querySelector(".multiselect-autocomplete-tech-stack .job-tags"),
+    techInput = document.querySelector(".multiselect-autocomplete-tech-stack input"),
+    techContainer = document.querySelector(".job-offer-technology-tags");
 
-let suggestContainer = document.querySelector(".suggester");
+let suggestContainer = document.querySelector(".multiselect-autocomplete-tech-stack .suggester");
 
-let suggestions = [
+let suggestionsDb = [
     "Channel",
     "CodingLab",
     "CodingNepal",
@@ -21,14 +21,14 @@ let maxTags = 10,
 let currentFocus = -1;
 
 //search suggestions and handle Enter key
-input.addEventListener("keydown", (e) => {
+techInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         e.preventDefault(); // prevent form submission on Enter
         let tag;
         if (currentFocus > -1) {
             let suggestion = suggestContainer.children[currentFocus];
 
-            if (input.value) {
+            if (techInput.value) {
                 tag = suggestion.textContent.replace(/\s+/g, ' ');
             }
         } else {
@@ -39,7 +39,7 @@ input.addEventListener("keydown", (e) => {
                 tag.split(',').forEach(tag => {
                     tags.push(tag);
                     createTag();
-                    suggestions.filter((data) => !tags.includes(data));
+                    suggestionsDb.filter((data) => !tags.includes(data));
                 });
             }
         }
@@ -65,13 +65,13 @@ input.addEventListener("keydown", (e) => {
         let userData = e.target.value;
         let emptyArray = [];
         if (userData) {
-            emptyArray = suggestions.filter((data) => {
+            emptyArray = suggestionsDb.filter((data) => {
                 return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
             });
             emptyArray = emptyArray.map((data) => {
                 return (data = '<li class="suggestion">' + data + '</li>');
             });
-            if (e.key === "Backspace" && input.value.length === 1) {
+            if (e.key === "Backspace" && techInput.value.length === 1) {
                 suggestContainer.classList.remove("active");
             } else {
                 suggestContainer.classList.add("active");
@@ -86,7 +86,7 @@ input.addEventListener("keydown", (e) => {
 function showSuggestions(list) {
     let listData;
     if (!list.length) {
-        listData = '<li class="suggestion">' + input.value + '</li>';
+        listData = '<li class="suggestion">' + techInput.value + '</li>';
     } else {
         listData = list.join('');
     }
@@ -94,7 +94,7 @@ function showSuggestions(list) {
 }
 
 function createTag() {
-    ul.querySelectorAll("li").forEach((li) => li.remove());
+    techUl.querySelectorAll("li").forEach((li) => li.remove());
     tags.slice().reverse().forEach((tag) => {
         let liTag = `<li>${tag} <svg class="remove-tag-icon" onclick="removeTag(this, '${tag}')" color="rgb(88, 166, 255)" width="24" height="24" fill="none" viewBox="0 0 24 24">
     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -102,7 +102,7 @@ function createTag() {
     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
           d="M6.75 6.75L17.25 17.25"/>
 </svg></li>`;
-        ul.insertAdjacentHTML("afterbegin", liTag);
+        techUl.insertAdjacentHTML("afterbegin", liTag);
     });
     suggestContainer.classList.remove("active");
 }
@@ -116,8 +116,8 @@ function removeTag(element, tag) {
 //click suggestion
 suggestContainer.addEventListener("click", (e) => {
     if (e.target.tagName === "LI") {
-        input.value = e.target.textContent.trim();
-        container.classList.remove("active");
+        techInput.value = e.target.textContent.trim();
+        techContainer.classList.remove("active");
         const enterKeyEvent = new KeyboardEvent('keydown', {
             key: 'Enter',
             code: 'Enter',
@@ -125,22 +125,24 @@ suggestContainer.addEventListener("click", (e) => {
             which: 13,
             charCode: 13,
         });
-        input.dispatchEvent(enterKeyEvent);
+        techInput.dispatchEvent(enterKeyEvent);
     }
 });
 
 
-container.addEventListener("click", () => {
-    input.focus();
+techContainer.addEventListener("click", () => {
+    setTimeout(() => {
+        techInput.focus();
+    }, 0);
 })
 
 function closeSuggestions() {
     suggestContainer.classList.remove("active");
-    input.blur();
+    techInput.blur();
 }
 
 document.addEventListener("click", (e) => {
-    const isInputOrSuggester = input.contains(e.target) || suggestContainer.contains(e.target);
+    const isInputOrSuggester = techInput.contains(e.target) || suggestContainer.contains(e.target);
 
     if (!isInputOrSuggester) {
         closeSuggestions();

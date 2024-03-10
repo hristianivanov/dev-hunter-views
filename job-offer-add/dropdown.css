@@ -99,3 +99,15 @@
     border: 1px solid #383838;
     height: 13em;
 }
+
+
+@keyframes textFade {
+    0% {
+        transform: translateX(-1em);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

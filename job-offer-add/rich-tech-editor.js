@@ -23,6 +23,8 @@ const orderNumberBtn = document.getElementById('insertOrderedList');
 const orderBulletBtn = document.getElementById('insertUnorderedList');
 
 orderNumberBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
     if (e.currentTarget.classList.contains('active')) {
         e.currentTarget.classList.remove('active');
     } else {
@@ -31,6 +33,8 @@ orderNumberBtn.addEventListener('click', (e) => {
     }
 })
 orderBulletBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
     if (e.currentTarget.classList.contains('active')) {
         e.currentTarget.classList.remove('active');
     } else {
