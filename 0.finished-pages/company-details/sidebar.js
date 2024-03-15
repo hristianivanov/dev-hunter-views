@@ -1,4 +1,11 @@
 let sidebarNavItems = document.querySelectorAll('.sidebar-nav-list > .sidebar-nav-item');
+let jobNavItem = document.querySelector('.company-name-holder .company-scroll-to-job');
+
+jobNavItem.addEventListener('click', (e) => {
+    e.preventDefault();
+    const hash = e.target.getAttribute('href');
+    scrollToTarget(hash, 1000);
+});
 
 sidebarNavItems.forEach(item => {
     item.addEventListener('click', (e) => {
@@ -6,7 +13,7 @@ sidebarNavItems.forEach(item => {
         const hash = item.getAttribute('href');
         removeSideItemCurr();
         item.classList.add('current');
-        scrollToTarget(hash,1000);
+        scrollToTarget(hash, 1000);
     });
 });
 
@@ -44,8 +51,6 @@ function scrollToTarget(target, duration) {
 
     requestAnimationFrame(animation);
 }
-
-window.addEventListener('scroll', () => {})
 
 //occurs bugs
 // Listen for scroll event on the window
