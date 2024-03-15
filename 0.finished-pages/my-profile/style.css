@@ -165,13 +165,13 @@ body {
 }
 
 .management-wrapper .menu .menu-item.application-icon::before {
-    background-image: url("0.finished-pages/my-profile/job-application-icon.svg");
+    background-image: url("job-application-icon.svg");
 }
 .management-wrapper .menu .menu-item.saved-job-icon::before {
-    background-image: url("0.finished-pages/my-profile/saved-job-icon.svg");
+    background-image: url("saved-job-icon.svg");
 }
 .management-wrapper .menu .menu-item.my-profile-icon::before {
-    background-image: url("0.finished-pages/my-profile/my-profile-icon.svg");
+    background-image: url("my-profile-icon.svg");
 }
 .management-wrapper .menu .menu-item a {
     color: rgb(89, 89, 89);

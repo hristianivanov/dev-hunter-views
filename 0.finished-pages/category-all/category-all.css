@@ -598,6 +598,16 @@ input {
     background: unset;
 }
 
+.badge.green.remote {
+    background: rgb(179, 255, 200);
+    color: #127C30;
+}
+
+.badge.green.remote > img {
+    vertical-align: middle;
+    margin-right: 7px;
+}
+
 .badge.has-tooltip.hybrid::after {
     content: '';
     display: block;
